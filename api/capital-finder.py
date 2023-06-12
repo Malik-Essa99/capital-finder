@@ -5,10 +5,6 @@ import requests
 class handler(BaseHTTPRequestHandler):
 
     def do_GET(self):
-        self.send_response(200)
-        self.send_header('Content-type', 'text/plain')
-        self.end_headers()
-
         url_path = self.path
         url_components = parse.urlsplit(url_path)
         query_list = parse.parse_qsl(url_components.query)
@@ -25,7 +21,6 @@ class handler(BaseHTTPRequestHandler):
             for country_info in data:
                 capital = country_info["capital"][0]
                 message = f"The capital of {country} is {capital}"
-                break
 
         if 'capital' in my_dict:
             capital = my_dict.get('capital')
@@ -38,7 +33,9 @@ class handler(BaseHTTPRequestHandler):
             for capital_info in data:
                 country = capital_info["name"]["common"]
                 message = f"{capital} is the capital of {country}"
-                break
-
+                
+        self.send_response(200)
+        self.send_header('Content-type', 'text/plain')
+        self.end_headers()
         self.wfile.write(message.encode())
         return
