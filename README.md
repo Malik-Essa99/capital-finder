@@ -5,5 +5,4 @@
 ### python api/capital-finder.py
 ## Testing 
 ### How do you run tests?
-using this link:
-### Test Notes: None
+using this link: https://serverless-function-4t0mrazxh-malik-essa99.vercel.app/api/capital_finder?{country}={Amman}
